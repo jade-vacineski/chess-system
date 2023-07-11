@@ -1,5 +1,5 @@
 
-namespace Board{
+namespace ChessSystem{
     enum Color{
         Black,
         White

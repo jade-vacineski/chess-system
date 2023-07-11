@@ -1,4 +1,4 @@
-namespace Board
+namespace ChessSystem
 {
     class Piece
     {
