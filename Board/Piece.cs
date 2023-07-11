@@ -7,9 +7,9 @@ namespace ChessSystem
         public int NumberOfMovements { get; set; }
         public Board board { get; protected set; }
 
-        public Piece(Position position, Board board, Color color)
+        public Piece(Board board, Color color)
         {
-            Position = position;
+            Position = null;
             NumberOfMovements = 0;
             this.board = board;
             this.color = color;

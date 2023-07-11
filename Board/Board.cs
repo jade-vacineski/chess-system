@@ -18,5 +18,11 @@ namespace ChessSystem
             return _piece[line, column];
         }
 
+        public void InsertPiece(Piece pieces, Position position)
+        {
+            _piece[position.Line, position.Column] = pieces;
+            pieces.Position = position;
+        }
+
     }
 }
