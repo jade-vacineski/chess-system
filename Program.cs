@@ -1,4 +1,5 @@
 ﻿using Board;
+using System;
 
 namespace ChessSystem
 {
@@ -6,10 +7,7 @@ namespace ChessSystem
     {
         static void Main(string[] args)
         {
-            var position = new Position(3, 4);
-
-            Console.WriteLine("Position");
-            Console.WriteLine();
+            
         }
     }
 }
