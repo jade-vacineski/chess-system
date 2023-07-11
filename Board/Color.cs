@@ -1,6 +1,8 @@
 
-namespace ChessSystem{
-    enum Color{
+namespace ChessSystem
+{
+    enum Color
+    {
         Black,
         White
     }

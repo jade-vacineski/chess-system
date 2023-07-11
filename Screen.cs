@@ -12,21 +12,18 @@ namespace ChessSystemConsole
                 for (int j = 0; j < board.Column; j++)
                 {
 
-                    if (board.Piece != null)
-                    {
-                        Console.Write(board.Piece(i, j) + " ");
-                    }
-                    else
+                    if (board.ValidPosition == null)
                     {
                         Console.Write("-");
                     }
-
+                    else
+                    {
+                        Console.Write(board.Piece(i, j) + " ");
+                    }
                 }
-
             }
 
-            System.Console.WriteLine();
-
         }
+
     }
 }

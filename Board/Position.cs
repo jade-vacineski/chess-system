@@ -11,7 +11,8 @@ namespace ChessSystem
             Column = column;
         }
 
-        override public string ToString(){
+        override public string ToString()
+        {
             return Line +
             ", "
             + Column;

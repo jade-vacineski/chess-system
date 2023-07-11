@@ -3,6 +3,7 @@ namespace ChessSystem.Chess
 {
     class Rook : Piece
     {
+        
         public Rook(Board board, Color color) : base(board, color)
         {
 
@@ -12,5 +13,6 @@ namespace ChessSystem.Chess
         {
             return "R";
         }
+
     }
 }

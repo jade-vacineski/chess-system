@@ -13,7 +13,6 @@ namespace ChessSystem
             NumberOfMovements = 0;
             this.board = board;
             this.color = color;
-
         }
 
     }
