@@ -12,5 +12,11 @@ namespace ChessSystem
             Line = line;
             Column = column;
         }
+
+        public Piece Piece(int line, int column)
+        {
+            return _piece[line, column];
+        }
+
     }
 }

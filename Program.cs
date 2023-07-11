@@ -6,8 +6,12 @@ namespace ChessSystemConsole
     {
         static void Main(string[] args)
         {
-            var board = new Board(8,8);
+            var board = new Board(8, 8);
+
+            Screen.PrintBoard(board);
             
+            System.Console.WriteLine();
+
         }
     }
 }
