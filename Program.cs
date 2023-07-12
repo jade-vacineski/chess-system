@@ -1,6 +1,6 @@
 ﻿using ChessSystem;
-using ChessSystem.Chess;
-using ChessSystemConsole.Chess;
+using Chess;
+
 
 namespace ChessSystemConsole
 {
@@ -8,20 +8,11 @@ namespace ChessSystemConsole
     {
         static void Main(string[] args)
         {
-            try
-            {
-                var board = new Board(8, 8);
-                board.InsertPiece(new Rook(board, Color.Black), new Position(0, 0));
-                board.InsertPiece(new Rook(board, Color.Black), new Position(0, 2));
-                board.InsertPiece(new King(board, Color.Black), new Position(2, 4));
+            var chessPosition = new ChessPosition('c', 7);
 
-                Screen.PrintBoard(board);
-            }
+            System.Console.WriteLine(chessPosition);
 
-            catch (BoardException e)
-            {
-                System.Console.WriteLine(e.Message);
-            }
+            System.Console.WriteLine(chessPosition.ToPosition());
 
         }
     }

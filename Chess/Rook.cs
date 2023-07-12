@@ -1,9 +1,10 @@
 using ChessSystem;
-namespace ChessSystem.Chess
+
+namespace Chess
 {
     class Rook : Piece
     {
-        
+
         public Rook(Board board, Color color) : base(board, color)
         {
 

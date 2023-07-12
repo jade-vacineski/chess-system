@@ -1,6 +1,6 @@
 using ChessSystem;
 
-namespace ChessSystemConsole.Chess
+namespace Chess
 {
     class King : Piece
     {
@@ -14,6 +14,6 @@ namespace ChessSystemConsole.Chess
         {
             return "k";
         }
-        
+
     }
 }

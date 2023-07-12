@@ -4,7 +4,7 @@ namespace ChessSystem
     {
         public int Line { get; set; }
         public int Column { get; set; }
-        private Piece[,] _piece;
+        private readonly Piece[,] _piece;
 
         public Board(int line, int column)
         {
