@@ -13,7 +13,7 @@ namespace ChessSystem
             Column = column;
         }
 
-        public Piece Piece(int line, int column)
+        public Piece Pieces(int line, int column)
         {
             return _piece[line, column];
         }
@@ -37,6 +37,20 @@ namespace ChessSystem
             }
             _piece[position.Line, position.Column] = pieces;
             pieces.Position = position;
+        }
+
+        public Piece RemovePiece(Position position)
+        {
+            if (Piece(position) == null)
+            {
+                return null;
+            }
+
+            Piece asst = Piece(position);
+            asst.Position = null;
+            _piece[position.Line, position.Column] = null;
+            return asst;
+
         }
 
         public bool ValidPosition(Position position)

@@ -1,3 +1,4 @@
+using Chess;
 using ChessSystem;
 
 namespace ChessSystemConsole
@@ -13,13 +14,13 @@ namespace ChessSystemConsole
                 for (int j = 0; j < board.Column; j++)
                 {
 
-                    if (board.Piece(i, j) == null)
+                    if (board.Pieces(i, j) == null)
                     {
                         Console.Write("- ");
                     }
                     else
                     {
-                        Screen.PrintPiece(board.Piece(i, j));
+                        Screen.PrintPiece(board.Pieces(i, j));
                     }
                 }
                 System.Console.WriteLine();
@@ -41,6 +42,14 @@ namespace ChessSystemConsole
                 Console.Write(piece);
                 Console.ForegroundColor = asst;
             }
+        }
+
+        public static ChessPosition ReadPosition()
+        {
+            string s = Console.ReadLine();
+            char column = s[0];
+            int line = int.Parse(s[1] + "");
+            return new ChessPosition(column, line);
         }
 
     }

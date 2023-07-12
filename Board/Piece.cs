@@ -15,5 +15,10 @@ namespace ChessSystem
             this.color = color;
         }
 
+        public void IncreaseNumberOfMoves()
+        {
+            NumberOfMovements++;
+        }
+
     }
 }

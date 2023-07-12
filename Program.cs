@@ -9,14 +9,22 @@ namespace ChessSystemConsole
         {
             try
             {
-                Board board = new Board(8, 8);
-                board.InsertPiece(new Rook(board, Color.Black), new Position(0, 2));
-                board.InsertPiece(new Rook(board, Color.Black), new Position(1, 3));
-                board.InsertPiece(new King(board, Color.Black), new Position(2, 5));
+                var chessMatch = new ChessMatch();
 
-                Screen.PrintBoard(board);
+                while (!chessMatch.Finished)
+                {
+                    Console.Clear();
+                    Screen.PrintBoard(chessMatch.board);
+                    Console.WriteLine("Origin: ");
+                    Position origin = Screen.ReadPosition().ToPosition();
+                    Console.WriteLine("Destiny: ");
+                    Position destiny = Screen.ReadPosition().ToPosition();
+
+                   chessMatch.PerformMovement(origin, destiny);
+             
+                }
             }
-
+            
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
