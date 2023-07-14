@@ -11,6 +11,12 @@ namespace ChessSystem
             Column = column;
         }
 
+        public void DefineValue(int line, int column)
+        {
+            Line = line;
+            Column = column;
+        }
+
         override public string ToString()
         {
             return Line +

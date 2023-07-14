@@ -35,5 +35,6 @@ namespace Chess
             board.InsertPiece(new Rook(board, Color.Black), new ChessPosition('c', 3).ToPosition());
 
         }
+
     }
 }
