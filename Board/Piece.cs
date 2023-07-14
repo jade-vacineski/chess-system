@@ -20,6 +20,27 @@ namespace ChessSystem
             NumberOfMovements++;
         }
 
+        public bool ThereArePossibleMoves()
+        {
+            bool[,] matrix = PossibleMoves();
+            for (int i = 0; i < board.Line; i++)
+            {
+                for (int j = 0; j < board.Column; j++)
+                {
+                    if (matrix[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool CanMoveTo(Position pos)
+        {
+            return PossibleMoves()[pos.Line, pos.Column];
+        }
+
         public abstract bool[,] PossibleMoves();
 
     }
