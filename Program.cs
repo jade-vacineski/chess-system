@@ -1,4 +1,5 @@
-﻿using ChessSystem;
+﻿using System.Net;
+using ChessSystem;
 using Chess;
 namespace ChessSystemConsole
 {
@@ -9,29 +10,35 @@ namespace ChessSystemConsole
             try
             {
                 var chessMatch = new ChessMatch();
-
-                while (!chessMatch.Finished)
+                try
                 {
-                    Console.Clear();
-                    Screen.PrintBoard(chessMatch.Board);
-                    Console.WriteLine();
-                    System.Console.WriteLine("Rotation: " + chessMatch.Rotation);
-                    System.Console.WriteLine("Waiting for move: " + chessMatch.CurrentPlayer);
+                    while (!chessMatch.Finished)
+                    {
 
-                    Console.WriteLine("Origin: ");
-                    Position origin = Screen.ReadPosition().ToPosition();
-                    chessMatch.ValidateOriginPosition(origin);
+                        Console.Clear();
+                        Screen.PrintMatch(chessMatch);
 
-                    bool[,] possiblePositions = chessMatch.Board.Piece(origin).PossibleMoves();
+                        Console.WriteLine("Origin: ");
+                        Position origin = Screen.ReadPosition().ToPosition();
+                        chessMatch.ValidateOriginPosition(origin);
 
-                    Console.Clear();
-                    Screen.PrintBoard(chessMatch.Board);
+                        bool[,] possiblePositions = chessMatch.Board.Piece(origin).PossibleMoves();
 
-                    Console.WriteLine("Destiny: ");
-                    Position destiny = Screen.ReadPosition().ToPosition();
+                        Console.Clear();
+                        Screen.PrintBoard(chessMatch.Board, possiblePositions);
 
-                    chessMatch.PerformMovement(origin, destiny);
+                        Console.WriteLine();
+                        Console.WriteLine("Destiny: ");
+                        Position destiny = Screen.ReadPosition().ToPosition();
+
+                        chessMatch.PerformMovement(origin, destiny);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
             }
             catch (BoardException e)
             {

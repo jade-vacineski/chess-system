@@ -5,6 +5,37 @@ namespace ChessSystemConsole
 {
     class Screen
     {
+        public static void PrintMatch(ChessMatch match)
+        {
+            PrintBoard(match.Board);
+            Console.WriteLine();
+            PrintCapturedPieces(match);
+            System.Console.WriteLine("Rotation: " + match.Rotation);
+            System.Console.WriteLine("Waiting for move: " + match.CurrentPlayer);
+
+        }
+
+        public static void PrintCapturedPieces(ChessMatch match)
+        {
+            Console.WriteLine("Captured pieces:");
+            Console.Write("White");
+            PrintSet(match.capturedPieces(Color.White));
+            Console.WriteLine();
+            Console.Write("Black");
+            PrintSet(match.capturedPieces(Color.Black));
+            
+        }
+
+        public static void PrintSet(HashSet<Piece> set)
+        {
+            Console.Write("[");
+            foreach (Piece x in set)
+            {
+                Console.Write(x + " ");
+            }
+              Console.Write("]");
+        }
+
         public static void PrintBoard(Board board)
         {
 

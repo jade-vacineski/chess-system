@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+using System.Xml;
 using ChessSystem;
 
 namespace Chess
@@ -9,12 +11,17 @@ namespace Chess
         public int Rotation { get; private set; }
         public Color CurrentPlayer { get; private set; }
         public bool Finished { get; private set; }
+        private readonly HashSet<Piece> _pieces;
+        private readonly HashSet<Piece> _captured;
 
         public ChessMatch()
         {
             Board = new Board(8, 8);
             Rotation = 1;
             CurrentPlayer = Color.White;
+            Finished = false;
+            _pieces = new HashSet<Piece>();
+            _captured = new HashSet<Piece>();
             InsertPiece();
         }
 
@@ -32,6 +39,32 @@ namespace Chess
             PerformMovement(origin, destiny);
             Rotation++;
             ChangePlayer();
+        }
+        public HashSet<Piece> capturedPieces(Color color)
+        {
+            HashSet<Piece> asst = new HashSet<Piece>();
+            foreach (Piece x in _captured)
+            {
+                if (x.color == color)
+                {
+                    asst.Add(x);
+                }
+            }
+            return asst;
+        }
+
+        public HashSet<Piece> piecesInPlay(Color color)
+        {
+            HashSet<Piece> asst = new HashSet<Piece>();
+            foreach (Piece x in _pieces)
+            {
+                if (x.color == color)
+                {
+                    asst.Add(x);
+                }
+            }
+            asst.ExceptWith(capturedPieces(color));
+            return asst;
         }
 
         public void ValidateOriginPosition(Position pos)
@@ -70,12 +103,23 @@ namespace Chess
             }
         }
 
+        private void InsertNewPiece(char column, int line, Piece piece)
+        {
+            Board.InsertPiece(piece, new ChessPosition(column, line).ToPosition());
+            _pieces.Add(piece);
+        }
+
         private void InsertPiece()
         {
+            InsertNewPiece('c', 1, new Rook(Board, Color.White));
+            InsertNewPiece('c', 2, new Rook(Board, Color.White));
+            InsertNewPiece('c', 3, new Rook(Board, Color.White));
+            InsertNewPiece('d', 1, new Rook(Board, Color.White));
+            InsertNewPiece('d', 2, new Rook(Board, Color.Black));
+            InsertNewPiece('d', 3, new Rook(Board, Color.Black));
+            InsertNewPiece('e', 1, new Rook(Board, Color.Black));
+            InsertNewPiece('e', 2, new Rook(Board, Color.Black));
 
-            Board.InsertPiece(new Rook(Board, Color.Black), new ChessPosition('c', 1).ToPosition());
-            Board.InsertPiece(new Rook(Board, Color.Black), new ChessPosition('c', 2).ToPosition());
-            Board.InsertPiece(new Rook(Board, Color.Black), new ChessPosition('c', 3).ToPosition());
 
         }
 
