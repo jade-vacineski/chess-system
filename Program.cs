@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Runtime.CompilerServices;
+using System.Net;
 using ChessSystem;
 using Chess;
 namespace ChessSystemConsole
@@ -10,9 +11,10 @@ namespace ChessSystemConsole
             try
             {
                 var chessMatch = new ChessMatch();
-                try
+
+                while (!chessMatch.Finished)
                 {
-                    while (!chessMatch.Finished)
+                    try
                     {
 
                         Console.Clear();
@@ -30,23 +32,28 @@ namespace ChessSystemConsole
                         Console.WriteLine();
                         Console.WriteLine("Destiny: ");
                         Position destiny = Screen.ReadPosition().ToPosition();
+                        chessMatch.ValidateDestinyPosition(origin, destiny);
 
                         chessMatch.PerformMovement(origin, destiny);
                     }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-
+                Console.Clear();
+                Screen.PrintMatch(chessMatch);
             }
+            
             catch (BoardException e)
             {
                 Console.WriteLine(e.Message);
             }
+            Console.WriteLine();
         }
     }
 }
+
 
 
 

@@ -11,13 +11,18 @@ namespace ChessSystemConsole
             Console.WriteLine();
             PrintCapturedPieces(match);
             Console.WriteLine("Rotation: " + match.Rotation);
-            Console.WriteLine("Waiting for move: " + match.CurrentPlayer);
-            if (match.Check)
+            if (!match.Finished)
             {
-                Console.WriteLine("Check!");
+                Console.WriteLine("Waiting for move: " + match.CurrentPlayer);
+                if (match.Check)
+                {
+                    Console.WriteLine("Check!");
+                }
             }
-
-
+            else{
+                System.Console.WriteLine("Checkmate!");
+                System.Console.WriteLine("The winner was:" + match.CurrentPlayer);
+            }
         }
 
         public static void PrintCapturedPieces(ChessMatch match)

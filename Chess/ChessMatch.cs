@@ -75,9 +75,15 @@ namespace Chess
             {
                 Check = false;
             }
-
-            Rotation++;
-            ChangePlayer();
+            if (Checkmate(Adversary(CurrentPlayer)))
+            {
+                Finished = true;
+            }
+            else
+            {
+                Rotation++;
+                ChangePlayer();
+            }
         }
 
         public HashSet<Piece> capturedPieces(Color color)
@@ -107,7 +113,7 @@ namespace Chess
             return asst;
         }
 
-        public void ValidateOriginPosition(Position pos)
+        public void ValidateOriginPosition(Position pos, Position destiny)
         {
             if (Board.Piece(pos) == null)
             {
@@ -179,6 +185,38 @@ namespace Chess
             return false;
         }
 
+        public bool Checkmate(Color color)
+        {
+            if (!IsInCheck(color))
+            {
+                return false;
+            }
+            foreach (Piece x in piecesInPlay(color))
+            {
+                bool[,] mat = x.PossibleMoves();
+
+                for (int i = 0; i < Board.Line; i++)
+                {
+                    for (int j = 0; j < Board.Column; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            var destiny = new Position(i, j);
+                            Position origin = x.Position;
+                            Piece capturedPiece = PerformMovement(origin, destiny);
+                            bool checkmate = IsInCheck(color);
+                            UndoMove(origin, destiny, capturedPiece);
+                            if (!checkmate)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         private void InsertNewPiece(char column, int line, Piece piece)
         {
             Board.InsertPiece(piece, new ChessPosition(column, line).ToPosition());
@@ -199,5 +237,9 @@ namespace Chess
 
         }
 
+        internal void ValidateOriginPosition(Position origin)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
