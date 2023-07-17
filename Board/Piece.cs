@@ -20,6 +20,12 @@ namespace ChessSystem
             NumberOfMovements++;
         }
 
+        public void DecrementNumberOfMoves()
+        {
+            NumberOfMovements--;
+        }
+
+
         public bool ThereArePossibleMoves()
         {
             bool[,] matrix = PossibleMoves();

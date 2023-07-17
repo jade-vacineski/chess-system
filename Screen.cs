@@ -10,8 +10,13 @@ namespace ChessSystemConsole
             PrintBoard(match.Board);
             Console.WriteLine();
             PrintCapturedPieces(match);
-            System.Console.WriteLine("Rotation: " + match.Rotation);
-            System.Console.WriteLine("Waiting for move: " + match.CurrentPlayer);
+            Console.WriteLine("Rotation: " + match.Rotation);
+            Console.WriteLine("Waiting for move: " + match.CurrentPlayer);
+            if (match.Check)
+            {
+                Console.WriteLine("Check!");
+            }
+
 
         }
 
@@ -23,7 +28,7 @@ namespace ChessSystemConsole
             Console.WriteLine();
             Console.Write("Black");
             PrintSet(match.capturedPieces(Color.Black));
-            
+
         }
 
         public static void PrintSet(HashSet<Piece> set)
@@ -33,7 +38,7 @@ namespace ChessSystemConsole
             {
                 Console.Write(x + " ");
             }
-              Console.Write("]");
+            Console.Write("]");
         }
 
         public static void PrintBoard(Board board)
