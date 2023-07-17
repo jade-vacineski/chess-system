@@ -2,17 +2,17 @@ using ChessSystem;
 
 namespace Chess
 {
-    class King : Piece
+    class Knight : Piece
     {
 
-        public King(Board board, Color color) : base(board, color)
+        public Knight(Board board, Color color) : base(board, color)
         {
 
         }
 
         public override string ToString()
         {
-            return "k";
+            return "kn";
         }
 
         private bool CanMove(Position pos)
@@ -27,56 +27,56 @@ namespace Chess
             Position position = new Position(0, 0);
 
             //above
-            position.DefineValue(position.Line - 1, position.Column);
+            position.DefineValue(position.Line - 1, position.Column - 2);
             if (board.ValidPosition(position) && CanMove(position))
             {
                 matrix[position.Line, position.Column] = true;
             }
 
             //NE
-            position.DefineValue(position.Line - 1, position.Column + 1);
+            position.DefineValue(position.Line - 2, position.Column - 1);
             if (board.ValidPosition(position) && CanMove(position))
             {
                 matrix[position.Line, position.Column] = true;
             }
 
             //right
-            position.DefineValue(position.Line, position.Column + 1);
+            position.DefineValue(position.Line - 2, position.Column + 1);
             if (board.ValidPosition(position) && CanMove(position))
             {
                 matrix[position.Line, position.Column] = true;
             }
 
             //southeast
-            position.DefineValue(position.Line + 1, position.Column + 1);
+            position.DefineValue(position.Line - 1, position.Column + 2);
             if (board.ValidPosition(position) && CanMove(position))
             {
                 matrix[position.Line, position.Column] = true;
             }
 
             //down
-            position.DefineValue(position.Line + 1, position.Column);
+            position.DefineValue(position.Line + 1, position.Column + 2);
             if (board.ValidPosition(position) && CanMove(position))
             {
                 matrix[position.Line, position.Column] = true;
             }
 
             //southwest
-            position.DefineValue(position.Line + 1, position.Column - 1);
+            position.DefineValue(position.Line + 2, position.Column + 2);
             if (board.ValidPosition(position) && CanMove(position))
             {
                 matrix[position.Line, position.Column] = true;
             }
 
             //left
-            position.DefineValue(position.Line, position.Column - 1);
+            position.DefineValue(position.Line + 2, position.Column - 1);
             if (board.ValidPosition(position) && CanMove(position))
             {
                 matrix[position.Line, position.Column] = true;
             }
 
             //northwest
-            position.DefineValue(position.Line - 1, position.Column - 1);
+            position.DefineValue(position.Line + 1, position.Column - 2);
             if (board.ValidPosition(position) && CanMove(position))
             {
                 matrix[position.Line, position.Column] = true;

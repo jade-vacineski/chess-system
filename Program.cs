@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Net;
-using ChessSystem;
+﻿using ChessSystem;
 using Chess;
 namespace ChessSystemConsole
 {
