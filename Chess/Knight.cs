@@ -12,13 +12,19 @@ namespace Chess
 
         public override string ToString()
         {
-            return "kn";
+            return "H";
         }
 
         private bool CanMove(Position pos)
         {
             Piece p = board.Piece(pos);
             return p == null || p.color != color;
+        }
+
+        private bool RookTestForRock(Position pos)
+        {
+            Piece p = board.Piece(pos);
+            return p != null && p is Rook && p.color == color && p.NumberOfMovements == 0;
         }
 
         public override bool[,] PossibleMoves()

@@ -27,13 +27,17 @@ namespace ChessSystemConsole
 
         public static void PrintCapturedPieces(ChessMatch match)
         {
-            Console.WriteLine("Captured pieces:");
-            Console.Write("White");
+           
+            Console.WriteLine("Captured Pieces: ");
+            Console.Write("White: ");
             PrintSet(match.capturedPieces(Color.White));
             Console.WriteLine();
-            Console.Write("Black");
+            Console.Write("Black: ");
+            ConsoleColor asst = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             PrintSet(match.capturedPieces(Color.Black));
-
+            Console.ForegroundColor = asst;
+            Console.WriteLine();
         }
 
         public static void PrintSet(HashSet<Piece> set)
@@ -66,6 +70,7 @@ namespace ChessSystemConsole
             ConsoleColor originalBackground = Console.BackgroundColor;
             ConsoleColor changedBackground = ConsoleColor.DarkGray;
 
+          
             for (int i = 0; i < board.Line; i++)
             {
                 Console.Write(8 - i + " ");
@@ -80,16 +85,26 @@ namespace ChessSystemConsole
                         Console.BackgroundColor = originalBackground;
                     }
                     PrintPiece(board.Pieces(i, j));
+                    Console.BackgroundColor = originalBackground;
                 }
-                System.Console.WriteLine();
+                Console.WriteLine();
             }
-            Console.WriteLine(" a b c d e f g h");
+            Console.WriteLine("  a b c d e f g h");
             Console.BackgroundColor = originalBackground;
+        }
+
+         public static ChessPosition ReadChessPosition()
+        {
+            string s = Console.ReadLine();
+            char column = s[0];
+            int line = int.Parse(s[1] + "");
+            return new ChessPosition(column, line);
         }
 
 
         public static void PrintPiece(Piece piece)
         {
+            
             if (piece == null)
             {
                 Console.Write("- ");
@@ -102,23 +117,14 @@ namespace ChessSystemConsole
                 }
                 else
                 {
-                    ConsoleColor asst = Console.ForegroundColor;
+                    ConsoleColor aux = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write(piece);
-                    Console.ForegroundColor = asst;
+                    Console.ForegroundColor = aux;
                 }
                 Console.Write(" ");
             }
         }
-
-        public static ChessPosition ReadPosition()
-        {
-            var s = Console.ReadLine();
-            char column = s[0];
-            int line = int.Parse(s[1] + "");
-            return new ChessPosition(column, line);
-        }
-
 
     }
 }
